@@ -8,7 +8,23 @@ export default function Otp() {
         if (val.length === 1 && index < 3){
             inputs.current[index + 1].focus();
         }
+
+        if(val.length === 0 && index > 0){
+            console.log("logging")
+        }
     }
+
+    const handleKeyDown = (index, e) => {
+        if (
+            e.key === "Backspace" &&
+            e.target.value.length === 0 &&
+            index > 0 &&
+            inputs.current[index - 1]
+        ) {
+            // Move focus to the previous input field on backspace
+            inputs.current[index - 1].focus();
+        }
+    };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
@@ -26,6 +42,7 @@ export default function Otp() {
                     type="text"
                     maxLength= "1"
                     className="w-full outline-none mx-2 text-lg border-2 rounded-2xl text-center text-gray-500"
+                    onKeyDown={(e) => handleKeyDown(index, e)}
                     onChange = {(e) => handleInput(e,index)}
                     />
                 ))
