@@ -9,9 +9,6 @@ export default function Otp() {
             inputs.current[index + 1].focus();
         }
 
-        if(val.length === 0 && index > 0){
-            console.log("logging")
-        }
     }
 
     const handleKeyDown = (index, e) => {
